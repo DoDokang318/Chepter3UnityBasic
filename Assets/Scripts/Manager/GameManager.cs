@@ -6,40 +6,59 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI&&FirstScreen")]
     [SerializeField]
     private TextMeshProUGUI currentTime;
-    public InputField playerNameInput;
+    [SerializeField] private TMP_InputField playerNameInput;
     [SerializeField]
-    private string playerName = null;
+    private TextMeshProUGUI playerName ;
     [SerializeField]
     private GameObject Join;
     [SerializeField]
     private Button BtnJoin;
+    [SerializeField]
+    private GameObject FirstScreen;
+
+    [Header("UI&BottomBar")]
+    [SerializeField]
+    private Button BtnPlayerInitChange;
 
 
 
     private void Awake()
     {
-        playerName = playerNameInput.GetComponent<InputField>().text;
+        playerName.text = playerNameInput.text;
+        init();
     }
     void Start()
     {
-        if(playerName.Length>0&& playerName.Length <11)
-        {
-            Join.SetActive(true);
-            PlayerName();
-        }
+
         BtnJoin.onClick.AddListener(() =>
         {
             Debug.Log("버튼이 클릭되었습니다.");
-          
+            FirstScreen.SetActive(false);
+        });
+
+        BtnPlayerInitChange.onClick.AddListener(() =>
+        {
+            FirstScreen.SetActive(true);
         });
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         currentTime.text = "현재 시간" + System.DateTime.Now.ToString("HH:mm:ss");
+
+        if (playerNameInput.text.Length > 1 && playerNameInput.text.Length < 11)
+        {
+            Join.SetActive(true);
+            PlayerName();
+        }
+        else
+        {
+            Join.SetActive(false);
+        }
 
     }
 
@@ -47,10 +66,12 @@ public class GameManager : MonoBehaviour
     public void init()
     {
         Join.SetActive(false);
+        FirstScreen.SetActive(true);
+
 
     }
     public void PlayerName()
     {
-        playerName = playerNameInput.text;
+        playerName.text = playerNameInput.text;
     }
 }
