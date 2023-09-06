@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject FirstScreen;
 
-    [Header("UI&BottomBar")]
+    [Header("UI&&BottomBar")]
     [SerializeField]
     private Button BtnPlayerInitChange;
 
