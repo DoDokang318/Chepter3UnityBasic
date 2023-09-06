@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Button BtnPlayerInitChange;
 
+    [Header("UI&&Talk")]
+    [SerializeField]
+    private Button BtnTalkStart;
+    [SerializeField]
+    private GameObject TalkBox;
 
 
     private void Awake()
@@ -43,6 +48,11 @@ public class GameManager : MonoBehaviour
         {
             FirstScreen.SetActive(true);
         });
+        BtnTalkStart.onClick.AddListener(() =>
+        {
+            TalkBox.SetActive(true);
+        });
+
     }
 
     // Update is called once per frame
