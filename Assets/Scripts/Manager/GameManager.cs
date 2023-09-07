@@ -22,6 +22,14 @@ public class GameManager : MonoBehaviour
     [Header("UI&&BottomBar")]
     [SerializeField]
     private Button BtnPlayerInitChange;
+    [SerializeField]
+    private Button BtnSideBar;
+
+    [Header("UI&&SideBar")]
+    [SerializeField]
+    private GameObject SideBar;
+
+    private bool BoolSideBar = true;
 
     [Header("UI&&Talk")]
     [SerializeField]
@@ -55,14 +63,35 @@ public class GameManager : MonoBehaviour
             FirstScreen.SetActive(true);
         });
         BtnTalkStart.onClick.AddListener(() =>
-        {
-            TalkBox.SetActive(true);
+        {  
+                TalkBox.SetActive(true);
+              
         });
+
+        BtnSideBar.onClick.AddListener(() =>
+        {
+            if (BoolSideBar == true)
+            {
+                SideBar.SetActive(true);
+
+                BoolSideBar = false;
+                Debug.Log(BoolSideBar);
+            }
+
+            else if (BoolSideBar == false)
+            {
+                SideBar.SetActive(false);
+                BoolSideBar = true;
+                Debug.Log(BoolSideBar);
+            }
+
+        });
+
 
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {       
         currentTime.text = "현재 시간" + System.DateTime.Now.ToString("HH:mm:ss");
 
