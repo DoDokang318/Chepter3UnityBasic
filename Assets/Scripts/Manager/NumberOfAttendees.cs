@@ -5,6 +5,10 @@ using TMPro;
 
 public class NumberOfAttendees : MonoBehaviour
 {
+
+   
+    
+
     private List<string> playerAndNpcNames = new List<string>();
     public GameObject TextPrefab; // 생성할 TextMeshProUGUI 오브젝트 프리팹
     public Transform SpawnLocation; // 오브젝트를 생성할 위치
@@ -18,7 +22,12 @@ public class NumberOfAttendees : MonoBehaviour
     }
     void Start()
     {
+      
+    }
 
+
+    public  void NameList()
+    {
         foreach (Character player in players)  //  플레이어의 이름이 입력되고 실행되어야한다 
         {
 
@@ -33,8 +42,11 @@ public class NumberOfAttendees : MonoBehaviour
             {
                 textMeshPro.text = player.Name;
             }
-           i += 30;
+            i += 30;
+
+          
         }
+       
     }
 
 

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+   
     [Header("UI&&FirstScreen")]
     [SerializeField]
     private TextMeshProUGUI currentTime;
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     private GameObject TalkBox;
 
     Character playerCharacter;
+    NumberOfAttendees NameList;
 
     private void Awake()
     {
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
         init();
 
         playerCharacter = GameObject.Find("Player").GetComponent<Character>(); // Awake에서 호출
+        NameList = GameObject.Find("AttendeesList").GetComponent<NumberOfAttendees>();
 
         playerName.text = playerNameInput.text;
     }
@@ -56,6 +60,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("버튼이 클릭되었습니다.");
             FirstScreen.SetActive(false);
             PlayerName();
+            PlayerNameList();
+            NameList.NameList();
         });
 
         BtnPlayerInitChange.onClick.AddListener(() =>
@@ -117,7 +123,13 @@ public class GameManager : MonoBehaviour
     }
     public void PlayerName()
     {
-        playerCharacter.Name = playerNameInput.text;
+       
         playerName.text = playerNameInput.text;
     }
+
+    public void PlayerNameList()
+    {
+        playerCharacter.Name = playerNameInput.text;
+    }
+
 }
