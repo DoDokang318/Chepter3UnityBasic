@@ -10,29 +10,20 @@ public class NumberOfAttendees : MonoBehaviour
     public Transform SpawnLocation; // 오브젝트를 생성할 위치
     public float YDistance = 10.0f;
     int i = 1;
+    Character[] players;
 
+    private void Awake()
+    {
+       players = GameObject.FindObjectsOfType<Character>();
+    }
     void Start()
-    {   
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] npcs = GameObject.FindGameObjectsWithTag("Npc");
-      
+    {
 
-
-
-        foreach (GameObject player in players)
-        {
-            playerAndNpcNames.Add(player.name);
-        }
-
-        foreach (GameObject npc in npcs)
-        {
-            playerAndNpcNames.Add(npc.name);
-        }
-
-        foreach (string name in playerAndNpcNames)
+        foreach (Character player in players)  //  플레이어의 이름이 입력되고 실행되어야한다 
         {
 
-            Vector3 spawnPosition = transform.position + new Vector3(190, i + YDistance, 0);
+
+            Vector3 spawnPosition = transform.position + new Vector3(488, i + YDistance, 0);
             // 프리팹을 인스턴스화하고 위치를 설정하여 오브젝트를 생성
             GameObject newTextObject = Instantiate(TextPrefab, spawnPosition, Quaternion.identity);
             newTextObject.transform.parent = SpawnLocation.transform.parent;
@@ -40,12 +31,13 @@ public class NumberOfAttendees : MonoBehaviour
             TextMeshProUGUI textMeshPro = newTextObject.GetComponent<TextMeshProUGUI>();
             if (textMeshPro != null)
             {
-                textMeshPro.text = name;
+                textMeshPro.text = player.Name;
             }
-            i += 30;
-
+           i += 30;
         }
     }
+
+
 
 
 }

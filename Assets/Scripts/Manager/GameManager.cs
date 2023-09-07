@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
     [Header("UI&&FirstScreen")]
     [SerializeField]
     private TextMeshProUGUI currentTime;
-    [SerializeField] private TMP_InputField playerNameInput;
-    [SerializeField]
-    private TextMeshProUGUI playerName ;
+   public TMP_InputField playerNameInput;
+
+   public TextMeshProUGUI playerName ;
     [SerializeField]
     private GameObject Join;
     [SerializeField]
@@ -29,11 +29,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject TalkBox;
 
+    Character playerCharacter;
 
     private void Awake()
     {
         playerName.text = playerNameInput.text;
         init();
+
+        playerCharacter = GameObject.Find("Player").GetComponent<Character>(); // Awake에서 호출
+
+        playerName.text = playerNameInput.text;
     }
     void Start()
     {
@@ -42,6 +47,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("버튼이 클릭되었습니다.");
             FirstScreen.SetActive(false);
+            PlayerName();
         });
 
         BtnPlayerInitChange.onClick.AddListener(() =>
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
         if (playerNameInput.text.Length > 1 && playerNameInput.text.Length < 11)
         {
             Join.SetActive(true);
-            PlayerName();
+          
         }
         else
         {
@@ -82,6 +88,7 @@ public class GameManager : MonoBehaviour
     }
     public void PlayerName()
     {
+        playerCharacter.Name = playerNameInput.text;
         playerName.text = playerNameInput.text;
     }
 }
