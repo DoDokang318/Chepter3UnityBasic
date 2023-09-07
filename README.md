@@ -14,3 +14,7 @@ PlayerFallowCamera :플레이어를따라다니는 클래스입니다   lerp함�
 TalkBoxColison : TalkboxCollision 오브젝트 영역에 들어가면  대화창이 뜨고 나가면 사라지는 기능을 만들어준 클래스입니다 <br>
 GameManager : 이곳에서 각종UI를 및 케릭터 이름 입력에 관한기능이있습니다 <br>
 NumberOfAttendees: 사이드바에있는 참가자 목록을 출력해주는 클래스입니다 .<br>
+
+<h1> 현재 있는버그   </h1>
+게임 에서 플레이어 이름입력후 
+다시 이름을 바꿔주면 참석인원이 갱신이되지않고 중복으로 출력되는버그 
