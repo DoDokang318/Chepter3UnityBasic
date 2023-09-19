@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void ChainFun();
+    public static event ChainFun Name;
 
-   
     [Header("UI&&FirstScreen")]
     [SerializeField]
     private TextMeshProUGUI currentTime;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     private GameObject TalkBox;
 
     Character playerCharacter;
-    NumberOfAttendees NameList;
+   
 
     private void Awake()
     {
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         init();
 
         playerCharacter = GameObject.Find("Player").GetComponent<Character>(); // Awake에서 호출
-        NameList = GameObject.Find("AttendeesList").GetComponent<NumberOfAttendees>();
+        
 
         playerName.text = playerNameInput.text;
     }
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
             FirstScreen.SetActive(false);
             PlayerName();
             PlayerNameList();
-            NameList.NameList();
+            Name();
         });
 
         BtnPlayerInitChange.onClick.AddListener(() =>

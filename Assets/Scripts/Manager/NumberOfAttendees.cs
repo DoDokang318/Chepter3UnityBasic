@@ -20,12 +20,10 @@ public class NumberOfAttendees : MonoBehaviour
     {
        players = GameObject.FindObjectsOfType<Character>();
     }
-    void Start()
+    public void Start()
     {
-      
+        GameManager.Name += NameList;
     }
-
-
     public  void NameList()
     {
         foreach (Character player in players)  //  플레이어의 이름이 입력되고 실행되어야한다 
